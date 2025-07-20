@@ -29,13 +29,17 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
+    setReady(true);
   }, []);
+
+  if (!ready) return null;
 
   const login = async (email: string, password: string) => {
     // Simulate API call

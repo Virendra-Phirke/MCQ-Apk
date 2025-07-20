@@ -61,6 +61,7 @@ const initialProgress: UserProgress = {
 export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [progress, setProgress] = useState<UserProgress>(initialProgress);
   const [recentResults, setRecentResults] = useState<QuizResult[]>([]);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('progress');
@@ -72,6 +73,7 @@ export const ProgressProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedResults) {
       setRecentResults(JSON.parse(savedResults));
     }
+    setReady(true);
   }, []);
 
   const addQuizResult = (result: QuizResult) => {

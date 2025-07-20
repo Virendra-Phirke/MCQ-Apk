@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { questionBank } from '../data/questionBank';
 
 export interface Question {
@@ -58,6 +58,12 @@ export const useQuiz = () => {
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [config, setConfig] = useState<QuizConfig | null>(null);
   const [quizState, setQuizState] = useState<QuizState | null>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // If you load from localStorage, do it here.
+    setReady(true);
+  }, []);
 
   const startQuiz = () => {
     if (!config) return;

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "copy dist\\index.html dist\\404.html && gh-pages -d dist"
   },
   "dependencies": {
     "@netlify/vite-plugin": "^2.4.3",
